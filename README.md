@@ -1,0 +1,2 @@
+# Amoeba
+A WordPress theme.
