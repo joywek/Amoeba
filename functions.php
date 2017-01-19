@@ -1,0 +1,176 @@
+<?php
+
+if (!function_exists('amoeba_setup')) :
+/**
+ * Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ *
+ * @since Amoeba .0
+ */
+function amoeba_setup() {
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on Amoeba, use a find and replace
+	 * to change 'amoeba' to the name of your theme in all the template files
+	 */
+	load_theme_textdomain('amoeba', get_template_directory() . '/languages');
+
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support('automatic-feed-links');
+
+	/*
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support('title-tag');
+
+	/*
+	 * Enable support for custom logo.
+	 *
+	 *  @since Amoeba 1.0
+	 */
+	add_theme_support('custom-logo', array(
+		'height'      => 240,
+		'width'       => 240,
+		'flex-height' => true,
+	));
+
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+	 */
+	add_theme_support('post-thumbnails');
+	set_post_thumbnail_size(1200, 9999);
+
+	// This theme uses wp_nav_menu() in two locations.
+	register_nav_menus(array(
+		'primary' => __('Primary Menu', 'amoeba'),
+		'social'  => __('Social Links Menu', 'amoeba'),
+	));
+
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support('html5', array(
+		'search-form',
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	));
+
+	/*
+	 * Enable support for Post Formats.
+	 *
+	 * See: https://codex.wordpress.org/Post_Formats
+	 */
+	add_theme_support('post-formats', array(
+		'aside',
+		'image',
+		'video',
+		'quote',
+		'link',
+		'gallery',
+		'status',
+		'audio',
+		'chat',
+	));
+
+	/*
+	 * This theme styles the visual editor to resemble the theme style,
+	 * specifically font, colors, icons, and column width.
+	 */
+	add_editor_style(array('css/editor-style.css', amoeba_fonts_url()));
+
+	// Indicate widget sidebars can use selective refresh in the Customizer.
+	add_theme_support('customize-selective-refresh-widgets');
+}
+endif; // amoeba_setup
+add_action('after_setup_theme', 'amoeba_setup');
+
+/**
+ * Enqueue scripts and styles.
+ */
+function amoeba_scripts() {
+	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/fonts/font-awesome/4.7.0/css/font-awesome.min.css');
+	//if (is_page('Blog')) {
+		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/blog.css');
+	//}
+	wp_deregister_style('open-sans');
+	wp_register_style('open-sans', get_template_directory_uri() . '/fonts/open-sans/open-sans.css');
+	wp_enqueue_style('open-sans');
+	wp_enqueue_script('amoeba-js', get_template_directory_uri() . '/js/amoeba.js', array('jquery'), '');  
+}
+add_action('wp_enqueue_scripts', 'amoeba_scripts');
+
+
+if (!function_exists('amoeba_fonts_url')) :
+/**
+ * Register Google fonts for Amoeba.
+ *
+ * Create your own amoeba_fonts_url() function to override in a child theme.
+ *
+ * @since Amoeba 1.0
+ *
+ * @return string Google fonts URL for the theme.
+ */
+function amoeba_fonts_url() {
+	return '';
+}
+endif;
+
+/**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function amoeba_widgets_init() {
+	register_sidebar(array(
+		'name'          => esc_html__('Blog Sidebar', 'amoeba'),
+		'id'            => 'blog-sidebar',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h5 class="widget-title">',
+		'after_title'   => '</h5>',
+	));
+
+	//Register widget areas for the Widgetized page template
+	$pages = get_pages(array(
+		'meta_key' => '_wp_page_template',
+		'meta_value' => 'page-templates/page_widgetized.php',
+	));
+
+	foreach($pages as $page){
+		register_sidebar(array(
+			'name'          => esc_html__('Page - ', 'amoeba') . $page->post_title,
+			'id'            => 'widget-area-' . strtolower($page->post_name),
+			'description'   => esc_html__('Use this widget area to build content for the page: ', 'amoeba') . $page->post_title,
+			'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="atblock container">',
+			'after_widget'  => '</div></section>',
+			'before_title'  => '<h2 class="widget-title"><span class="title-decoration"></span>',
+			'after_title'   => '</h2>',
+		));
+	}
+}
+add_action('widgets_init', 'amoeba_widgets_init');
+
+function amoeba_tag_cloud_widget($args) {
+	$args['format'] = 'list';
+	return $args;
+}
+add_filter('widget_tag_cloud_args', 'amoeba_tag_cloud_widget');
+
+require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/options.php';
+//require get_template_directory() . '/inc/options-demo.php';
+
+?>

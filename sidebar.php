@@ -1,0 +1,20 @@
+<?php
+/**
+ * The template for the sidebar containing the main widget area
+ *
+ * @package Amoeba
+ * @since Amoeba 1.0
+ */
+?>
+
+<?php if (is_active_sidebar('blog-sidebar')) : ?>
+	<div id="blog-sidebar" class="sidebar clearfix" role="complementary">
+		<div class="widget-area">
+			<?php dynamic_sidebar('blog-sidebar'); ?>
+		</div>
+		<button id="sidebar-toggle">
+			<i class="fa fa-bars"></i>
+		</button>
+	</div>
+<?php endif; ?>
+

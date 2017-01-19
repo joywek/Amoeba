@@ -1,0 +1,150 @@
+.sidebar {
+	display: flex;
+	height: 100%;
+	position: fixed;
+	left: 0;
+}
+
+.widget-area {
+	width: 180px;
+	padding: 20px;
+	background-color: #384157;
+	color: #8390a8;
+	overflow: scroll;
+	height: e("calc(100% - 40px)");
+}
+
+.sidebar .widget {
+	margin: 0 0 -1px;
+	padding: 0 0 20px 0;
+}
+
+.sidebar .widget,
+.sidebar .widget a {
+	color: #8390a8;
+}
+
+.sidebar .widget a:hover {
+	color: #fff;
+}
+
+.sidebar .widget-title {
+	text-transform: uppercase;
+	margin: 0 0 10px 0;
+	color: #fff;
+}
+
+#sidebar-toggle {
+	background-color: #757575;
+	font-size: 12px;
+	width: 40px;
+	height: 40px;
+	display: none;
+}
+
+#sidebar-toggle:hover {
+	background-color: @theme-hicolor;
+}
+
+/* Make sure select elements fit in widgets. */
+.widget select {
+	max-width: 100%;
+}
+
+.widget ul {
+	list-style: none;
+	padding: 0 0 0 4px;
+	margin: 0;
+	font-size: 0.9em;
+}
+
+.widget ul li {
+	padding: 0;
+}
+
+.widget ul li::before {
+	font-family: Fontawesome;
+	font-size: 15px;
+}
+
+.widget_recent_entries li::before {
+	content: '\f016';
+	margin-right: 5px;
+}
+
+.widget_categories li::before {
+	content: '\f114';
+	margin-right: 8px;
+}
+
+.widget_tag_cloud {
+}
+
+.widget_archive li::before {
+	content: '\f133';
+	margin-right: 8px;
+}
+
+.widget_recent_comments li:before {
+	content: '\f0e5';
+	margin-right: 8px;
+}
+
+.widget_meta ul {
+	list-style: circle;
+	padding-left: 20px;
+}
+
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.search-form {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.search-form .search-field {
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0;
+	-webkit-appearance: none;
+	background-color: #4c5770;
+	color: #8390a8;
+	border: none;
+	opacity: .5;
+	width:e("calc(100% - 47px)");
+}
+
+.search-submit {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+    width: 48px;
+	border: none;
+	cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+	background-color: #222837;
+}
+
+.search-submit:hover {
+	background-color: #00c1d3;
+}
+
+.search-submit:before {
+	content: "\f002";
+	font-family: FontAwesome;
+	font-size: 20px;
+	left: 2px;
+	position: relative;
+}
