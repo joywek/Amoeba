@@ -12,7 +12,6 @@ $jquery(function($) {
 	
 	function sidebarLayout() {
 		var height = $(window).height() - $header.position().top - 40;
-		console.log(height);
 		$sidebar.css({ top: headerBottom + 'px', height: height + 'px'});
 	}
 	sidebarLayout();
