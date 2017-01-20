@@ -9,7 +9,7 @@
 
 <?php if (is_active_sidebar('blog-sidebar')) : ?>
 	<div id="blog-sidebar" class="sidebar clearfix" role="complementary">
-		<div class="widget-area">
+		<div id="widget-area">
 			<?php dynamic_sidebar('blog-sidebar'); ?>
 		</div>
 		<button id="sidebar-toggle">

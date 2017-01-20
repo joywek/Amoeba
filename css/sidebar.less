@@ -3,15 +3,20 @@
 	height: 100%;
 	position: fixed;
 	left: 0;
+	z-index: 1;
 }
 
-.widget-area {
+#widget-area {
 	width: 180px;
 	padding: 20px;
 	background-color: #384157;
 	color: #8390a8;
 	overflow: scroll;
 	height: e("calc(100% - 40px)");
+}
+
+#widget-area::-webkit-scrollbar {
+	display: none;
 }
 
 .sidebar .widget {

@@ -15,13 +15,11 @@
 						<a class="site-logo" href="/"><?php bloginfo('name'); ?></a>
 						<a id="nav-menu-toggle" class="nav-menu-toggle"></a>
 					</div>
-					<nav class="nav-menu-wrap" role="navigation">
-						<?php wp_nav_menu(array(
-							'theme_location' => 'primary',
-							'container' => '', 
-							'menu_id' => 'primary-menu',
-							'menu_class' => 'nav-menu'));
-						?>
-					</nav>
+					<?php wp_nav_menu(array(
+						'theme_location' => 'primary',
+						'container' => '', 
+						'menu_id' => 'nav-menu',
+						'menu_class' => 'nav-menu'));
+					?>
 				</div>
 			</header>

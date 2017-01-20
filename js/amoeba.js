@@ -3,7 +3,12 @@ var $jquery = jQuery.noConflict();
 $jquery(function($) {
 
 	$('#nav-menu-toggle').on('click', function() {
-		
+		var $menu = $('#nav-menu');
+		$menu.toggle(300, function() {
+			if ($(this).css("display") == "none") {
+				$(this).css("display", "");
+			}
+		});
 	});
 
 	var $header = $('#site-header');
@@ -18,6 +23,9 @@ $jquery(function($) {
 
 	$(window).resize(function() {
 		sidebarLayout();
+		if ($(this).width() > 960) {
+			$sidebar.css('left', '');
+		}
 	});
 
 	$(window).scroll(function() {
@@ -33,10 +41,12 @@ $jquery(function($) {
 
 	$('#sidebar-toggle').click(function() {
 		if ($sidebar.position().left == 0) {
-			$('#blog-sidebar').animate({left:'-220px'});
+			$sidebar.animate({left:'-220px'}, function() {
+				$sidebar.css('left', '');
+			});
 		}
 		else {
-			$('#blog-sidebar').animate({left:'0px'});
+			$sidebar.animate({left:'0px'});
 		}
 	});
 });
