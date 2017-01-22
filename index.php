@@ -28,7 +28,6 @@ get_header();
 	?>
 	</div>
 	<?php get_sidebar(); ?>
-	</div>
 </div>
 <?php else: ?>
 <?php get_template_part('no-results', 'archive'); ?>		

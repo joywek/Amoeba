@@ -104,9 +104,14 @@ function amoeba_scripts() {
 	//if (is_page('Blog')) {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/blog.css');
 	//}
-	wp_deregister_style('open-sans');
-	wp_register_style('open-sans', get_template_directory_uri() . '/fonts/open-sans/open-sans.css');
-	wp_enqueue_style('open-sans');
+	//wp_deregister_style('open-sans');
+	//wp_register_style('open-sans', get_template_directory_uri() . '/fonts/open-sans/open-sans.css');
+	//wp_enqueue_style('open-sans');
+
+	wp_deregister_script( 'jquery' );
+	wp_register_script( 'jquery', get_template_directory_uri() . 'js/jquery.min.js', false, null, true );
+	wp_enqueue_script( 'jquery' );
+
 	wp_enqueue_script('amoeba-js', get_template_directory_uri() . '/js/amoeba.js', array('jquery'), '');  
 }
 add_action('wp_enqueue_scripts', 'amoeba_scripts');

@@ -5,6 +5,9 @@
 @import "form.less";
 @import "highlight.less";
 
+#container {
+}
+
 #site-body {
 	display: flex;
 	flex-flow: row-reverse nowrap;
@@ -18,8 +21,8 @@
 }
 
 @media screen and (max-width: 960px) {
-	.sidebar {
-		left: -220px;
+	#widget-area {
+		display: none;
 	}
 	.blog-content, #site-footer {
 		margin-left: 0;
@@ -116,7 +119,7 @@
 	padding: 6px 14px;
 	background: @theme-hicolor;
 	text-decoration: none;
-	font-size: 0.9rem;
+	font-size: 0.9em;
 	margin-left: e("calc(50% - 48px)");
 }
 

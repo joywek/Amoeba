@@ -1,5 +1,5 @@
 @theme-hicolor: #33BBCC;
-@header-height 70px;
+@header-height 50px;
 @sidebar-width: 220px;
 
 html {
@@ -70,7 +70,7 @@ p {
 }
 
 img {
-	width: 100%;
+	max-width: 100%;
 }
 
 pre {
@@ -158,8 +158,7 @@ code {
 	zoom:1;
 }
 
-@media screen and (max-width: 960px) {
-	h1 {
-		font-size: 2.1em;
-	}
+@media screen and (max-width: 640px) {
+	body { font-size: 14px; }
 }
+

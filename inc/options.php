@@ -23,7 +23,7 @@ namespace amoeba {
 		}
 
 		function register_settings() {
-			register_setting($this->options_group, 'amoeba_options', array($this, 'sanitize_options'));
+			register_setting($this->options_group, 'amoeba_options');
 			add_settings_section('analytics_section', __('Analytics Settings'), null, $this->menu_slug);
 
 			add_settings_field(

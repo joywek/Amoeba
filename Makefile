@@ -3,6 +3,6 @@ css:
 
 deploy:
 	lessc css/blog.less blog.css
-	rsync -avzrP ./ root@joywek.com:/var/www/pw/wp-content/themes/amoeba/
+	rsync -vzrlptD . root@joywek.com:/var/www/amoeba/wp-content/themes/amoeba
 
 .PHONY: css deploy

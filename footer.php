@@ -6,9 +6,9 @@
 					</ul>
 				</div>
 			</footer>
-			<?php wp_footer(); ?>
-			<a href="#" id="back-to-top" style="display:none"></a>
-			<?php include_once("analytics.php") ?>
 		</div>
+		<a href="#" id="back-to-top" style="display:none"></a>
+		<?php wp_footer(); ?>
+		<?php include_once("analytics.php") ?>
 	</body>
 </html>
