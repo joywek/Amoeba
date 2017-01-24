@@ -21,6 +21,7 @@ get_header();
 			get_template_part('template-parts/content', get_post_format());
 		endwhile;
 		the_posts_pagination(array(
+			'mid_size'           => 5,
 			'prev_text'          => __('Previous page', 'amoeba'),
 			'next_text'          => __('Next page', 'amoeba'),
 			'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'amoeba') . ' </span>',

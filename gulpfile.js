@@ -62,4 +62,11 @@ gulp.task('deploy', function() {
 		}));
 });
 
+gulp.task('watch', function() {
+	gulp.watch('less/**/*.less', function() {
+		gulp.src('less/blog.less')
+		.pipe(less())
+		.pipe(gulp.dest('css'));
+	});
+});
 gulp.task('default', ['copy-files', 'minify-html', 'minify-css', 'minify-js']);
