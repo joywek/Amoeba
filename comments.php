@@ -25,13 +25,34 @@ function comment_callback($comment, $args, $depth) {
 	}
 ?>
 	<li id="comment-<?php echo $comment->comment_ID; ?>" <?php comment_class('', $comment); ?>>
-		<div class="author-avatar">
-			<?php echo get_avatar($comment, $args['avatar_size']); ?>
-		</div>
-		<div class="comment-body">
-			<div class="comment-header">
+		<div class="comment-header">
+			<div class="author-avatar">
+				<?php echo get_avatar($comment, $args['avatar_size']); ?>
+			</div>
+			<div class="author-name">
 				<?php comment_author_link($comment); ?>
 			</div>
+		</div>
+		<div class="comment-meta">
+			<span class="comment-date">
+				<a href="<?php echo esc_url(get_comment_link($comment, $args)); ?>">
+					<time datetime="<?php comment_time('c'); ?>">
+					<?php printf(__('%1$s at %2$s'), get_comment_date('', $comment), get_comment_time()); ?>
+					</time>
+				</a>
+			</span>
+			<?php
+				comment_reply_link(array_merge($args, array(
+					'add_below' => 'div-comment',
+					'depth'     => $depth,
+					'max_depth' => $args['max_depth'],
+					'before'    => '<span class="reply">',
+					'after'     => '</span>'
+				)));
+				edit_comment_link(__('Edit'), '<span class="edit-link">', '</span>');
+			?>
+		</div>
+		<div class="comment-body">
 			<?php if ('0' == $comment->comment_approved) : ?>
 				<p><em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em></p>
 			<?php else: ?>
@@ -43,23 +64,6 @@ function comment_callback($comment, $args, $depth) {
 				</p>
 			<?php endif; ?>
 			<div class="comment-footer">
-				<span class="comment-date">
-					<a href="<?php echo esc_url(get_comment_link($comment, $args)); ?>">
-						<time datetime="<?php comment_time('c'); ?>">
-						<?php printf(__('%1$s at %2$s'), get_comment_date('', $comment), get_comment_time()); ?>
-						</time>
-					</a>
-				</span>
-				<?php
-				comment_reply_link(array_merge($args, array(
-					'add_below' => 'div-comment',
-					'depth'     => $depth,
-					'max_depth' => $args['max_depth'],
-					'before'    => '<span class="reply">',
-					'after'     => '</span>'
-				)));
-				edit_comment_link(__('Edit'), '<span class="edit-link">', '</span>');
-				?>
 			</div>
 		</div>
 	</li>

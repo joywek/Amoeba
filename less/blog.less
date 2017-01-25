@@ -3,6 +3,7 @@
 @import "footer.less";
 @import "sidebar.less";
 @import "form.less";
+@import "comment.less";
 @import "highlight.less";
 
 #container {
@@ -157,79 +158,3 @@
 .pagination .current {
 	background: @theme-hicolor;
 }
-
-.comments-area .inner {
-	width: 85%;
-	margin: 0 auto;
-}
-
-.comment-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.comment-list .children {
-	list-style:none;
-	margin: 0;
-	padding: 0;
-}
-
-.comment {
-	display: flex;
-	flex-flow: row nowrap;
-	padding: 10px;
-	margin: 0;
-	border-top: 1px dotted #ddd;
-	-ms-word-wrap: break-word;
-	word-wrap: break-word;
-}
-
-.comment-body {
-	margin-left: 20px;
-}
-
-.author-avatar img.avatar {
-	width: 50px;
-	height: 50px;
-}
-
-.comment-header,
-.comment-header a {
-	color: #00c1d3;
-	font-weight: 700;
-}
-
-.comment-awaiting-moderation,
-.comment-body p {
-	margin: 0;
-	line-height: 1.5em;
-	font-size: 0.9em;
-	margin: .5em 0;
-	word-wrap: break-word;
-}
-
-.comment-parent, .comment-parent a {
-	color: #e77064;
-}
-
-.comment-footer {
-	line-height: 1.5em;
-	font-size: 0.75em;
-	display: inline;
-}
-
-.comment-footer span a {
-	color: #999;
-}
-
-.comment-footer span::after {
-	content: '-';
-	margin: 0 5px;
-}
-
-.comment-footer span:last-of-type::after {
-	content: '';
-	margin: 0;
-}
-
