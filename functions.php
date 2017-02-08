@@ -101,12 +101,16 @@ add_action('after_setup_theme', 'amoeba_setup');
  */
 function amoeba_scripts() {
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/fonts/font-awesome/4.7.0/css/font-awesome.min.css');
-	//if (is_page('Blog')) {
+
+	if (is_home() || is_page('blog') || is_single() || is_category() || is_tag() || is_archive() || is_search()) {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/css/blog.css');
-	//}
-	//wp_deregister_style('open-sans');
-	//wp_register_style('open-sans', get_template_directory_uri() . '/fonts/open-sans/open-sans.css');
-	//wp_enqueue_style('open-sans');
+	}
+	else if (is_page('about')) {
+		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/css/about.css');
+	}
+	else {
+		wp_enqueue_style('amoeba_style', get_template_directory_uri() . '/css/page.css');
+	}
 
 	wp_deregister_script( 'jquery' );
 	wp_register_script( 'jquery', get_template_directory_uri() . '/js/jquery.min.js', false, null, true );

@@ -13,6 +13,9 @@ gulp.task('copy-files', function() {
 
 	gulp.src('img/**/*')
 	.pipe(gulp.dest('dist/img'));
+
+	gulp.src('languages/**/*')
+	.pipe(gulp.dest('dist/languages'));
 });
 
 gulp.task('minify-html', function() {
@@ -30,7 +33,7 @@ gulp.task('minify-html', function() {
 });
 
 gulp.task('minify-css', function () {
-	gulp.src('less/blog.less')
+	gulp.src(['less/blog.less', 'less/about.less'])
 	.pipe(less())
 	.pipe(gulp.dest('css'))
 	.pipe(cleanCSS({compatibility: 'ie8'}))
@@ -64,7 +67,7 @@ gulp.task('deploy', function() {
 
 gulp.task('watch', function() {
 	gulp.watch('less/**/*.less', function() {
-		gulp.src('less/blog.less')
+		gulp.src(['less/blog.less', 'less/page.less', 'less/about.less'])
 		.pipe(less())
 		.pipe(gulp.dest('css'));
 	});
