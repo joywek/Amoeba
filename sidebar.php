@@ -8,7 +8,7 @@
 ?>
 
 <?php if (is_active_sidebar('blog-sidebar')) : ?>
-	<div id="blog-sidebar" class="sidebar clearfix" role="complementary">
+	<div id="sidebar" class="sidebar clearfix" role="complementary">
 		<div id="widget-area">
 			<?php dynamic_sidebar('blog-sidebar'); ?>
 		</div>

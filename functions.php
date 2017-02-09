@@ -173,10 +173,15 @@ function amoeba_widgets_init() {
 add_action('widgets_init', 'amoeba_widgets_init');
 
 function amoeba_tag_cloud_widget($args) {
-	$args['format'] = 'list';
+	//$args['format'] = 'list';
 	return $args;
 }
 add_filter('widget_tag_cloud_args', 'amoeba_tag_cloud_widget');
+
+function amoeba_tag_cloud($tag_string){
+	return preg_replace("/style='font-size:.+pt;'/", '', $tag_string);
+}
+add_filter('wp_generate_tag_cloud', 'amoeba_tag_cloud', 10, 3);
 
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/options.php';

@@ -4,7 +4,7 @@ $jquery(function($) {
 
 	var $adminbar = $('#wpadminbar');
 	var $header = $('#site-header');
-	var $sidebar = $('#blog-sidebar');
+	var $sidebar = $('#sidebar');
 	var $widgets = $('#widget-area');
 	
 	function layout() {

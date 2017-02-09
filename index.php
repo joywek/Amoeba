@@ -15,7 +15,7 @@ get_header();
 
 <div id="site-body">
 	<?php if (have_posts()): ?>
-		<div id="blog-content" class="blog-content">
+		<div id="main" class="main">
 		<?php
 			while (have_posts()) : the_post();
 				get_template_part('template-parts/content', get_post_format());
