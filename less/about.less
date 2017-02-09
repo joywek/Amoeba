@@ -1,0 +1,131 @@
+@header-bgcolor: #138AB4;
+@sidebar-bgcolor: #f1f1f1;
+@sidebar-color: #4a4a4a;
+@sidebar-title-color: #000;
+@sidebar-subtitle-color: #3d3e40;
+@sidebar-line-color: #c5c5c7;
+@sidebar-font-size: 14px;
+@main-bgcolor: #fbfbfb;
+@main-color: #4a4a4a;
+@main-title-color: #000;
+@main-subtitle-color: #d7ac39;
+@main-line-color: #d0d0d0;
+
+@import "base.less";
+@import "header.less";
+
+#site-header {
+}
+
+#site-footer {
+	display: none;
+}
+
+#site-body {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	padding-top: @header-height;
+}
+
+.sidebar {
+	width: 240px;
+	background: @sidebar-bgcolor;
+	color: @sidebar-color;
+	padding: 30px 0;
+	font-size: @sidebar-font-size;
+	border-right: 1px solid #cacaca;
+}
+
+.widget {
+	width: 75%;
+	margin: 0 auto 40px auto;
+}
+
+.widget ul {
+	list-style: none;
+	text-decoration: none;
+	padding: 0;
+}
+
+.widget-info {
+	text-align: center;
+}
+
+.widget-info .avatar {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	margin: 0 auto;
+	background: url('../img/cat.jpg');
+	background-size: 100% 100%;
+}
+
+.widget-info h2 {
+	color: @sidebar-title-color;
+	margin: 10px 0 0 0;
+}
+
+.widget-info h6 {
+	margin: 0;
+	color: @sidebar-color;
+}
+
+.widget-header {
+	display: flex;
+	flex-flow: column;
+	margin: 0 0 1em 0;
+	font-size: 1em;
+}
+
+.widget-header .title {
+	text-align: center;
+	color: @sidebar-title-color;
+	margin: 0;
+}
+
+.widget-header:after {
+	content: '.';
+	font-size: 0;
+	width: 60%;
+	margin: 4px auto 0 auto;
+	background: @sidebar-line-color;
+	height: 1px;
+}
+
+.widget-contact {
+	text-align: center;
+}
+
+.widget-contact ul li {
+	margin-bottom: 8px;
+}
+
+.widget-body .title {
+	font-weight: 600;
+	color: @sidebar-subtitle-color;
+}
+
+.widget-body .text {
+	line-height: @sidebar-font-size;
+}
+
+.main {
+	flex: 1;
+	background: @main-bgcolor;
+}
+
+.main .inner {
+	padding: 20px 30px 20px 30px;
+}
+
+.section-header {
+	padding: 0 0 6px 0;
+	border-bottom: 1px solid @main-line-color;
+	margin-bottom: 0;
+}
+
+.section p {
+	line-height: 1.3em;
+}
