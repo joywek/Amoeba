@@ -1,67 +1,54 @@
 <?php
 
-namespace amoeba {
+require_once('options-about.php');
+require_once('options-analytics.php');
 
-	class ThemeSettingsPage {
+class ThemeOptionsManager {
 
-		private $options;
-		private $menu_slug = 'amoeba-theme-settings';
-		private $options_group = 'amoeba_options_group';
+	private $pages;
 
-		function __construct() {
-			add_action('admin_menu', array($this, 'setup_menu'));
-			add_action('admin_init', array($this, 'register_settings'));
-		}
+	function __construct() {
 
-		public function setup_menu() {
-			add_options_page(
-				__('Amoeba Settings'), // Page title
-				__('Amoeba'), // Menu title
-				'manage_options', 
-				$this->menu_slug, 
-				array($this, 'render'));
-		}
+		$this->pages = array(
+			new ThemeAboutOptionsPage(),
+			new ThemeAnalyticsOptionsPage(),
+		);
 
-		function register_settings() {
-			register_setting($this->options_group, 'amoeba_options');
-			add_settings_section('analytics_section', __('Analytics Settings'), null, $this->menu_slug);
+		add_action('admin_menu', array($this, 'setup_menu'));
+		add_action('admin_init', array($this, 'register_settings'));
+	}
 
-			add_settings_field(
-				'trackgin_id', 
-				__('Trackgin ID'), 
-				array($this, 'display_tracking_id_field'),
-				$this->menu_slug, 
-				'analytics_section');
-		}
+	public function setup_menu() {
 
-		function render() {
-			$this->options = get_option('amoeba_options');
-		?>
-			<div class="wrap">
-				<h1>Amoeba Settings</h1>
-				<form name="form" action="options.php" method="post">
-				<?php
-					settings_fields($this->options_group);
-					do_settings_sections($this->menu_slug);
-					submit_button();
-				?>
-				</form>
-			</div>
-		<?php
-		}
+		$pages = $this->pages;
+		$home_page = array_shift($pages);
 
-		function sanitize_options($options) {
-			return $options;
-		}
+		add_menu_page(
+			$home_page->page_title, // Page title
+			__('Amoeba'), // Menu title
+			'manage_options', // The capability required for this menu to be displayed to the user 
+			$home_page->menu_slug, // The slug name to refer to this menu by (should be unique for this menu).
+			array($home_page, 'render_page'));
 
-		function display_tracking_id_field() {
-			echo '<input type="text" id="tracking_id" name="amoeba_options[analytics][tracking_id]" value="', 
-				$this->options['analytics']['tracking_id'], '" />';
+		foreach ($pages as &$page) {
+			add_submenu_page(
+				$home_page->menu_slug,
+				$page->page_title, // Page title
+				$page->menu_title, // Menu title
+				'manage_options',
+				$page->menu_slug,
+				array($page, 'render_page'));
 		}
 	}
 
-	$mgr = new ThemeSettingsPage();
+	function register_settings() {
+		foreach ($this->pages as &$page) {
+			$page->register_settings();
+		}
+	}
 
 }
+
+$mgr = new ThemeOptionsManager();
 
 ?>

@@ -60,4 +60,39 @@ $jquery(function($) {
 		//	$sidebar.animate({left:'0px'});
 		//}
 	});
+
+	var Pager = {
+
+		create: function() {
+			var pager = {};
+		
+			pager.navigation = $('ul.nav');
+			pager.navigation.data('sel', 0);
+			pager.navigation.on('click', 'li:not(.external)', function(e) {
+				var $li = $(this);
+				var $target = $($li.children('a').attr('href'));
+				var index = pager.navigation.children().index($li);
+				pager.handleMenu(index);
+			});
+
+			pager.handleMenu = function(index) {
+				pager.navigation.children().eq(index)
+					.addClass('current')
+					.siblings().removeClass('current');
+			}
+		}
+	};
+
+	Pager.create();
+
+	//$('.main').click(function() {
+	//	$e = $('.widget-area');
+	//	if ($e.position().left == 0) {
+	//		$e.stop().animate({'left':'-250px'}, 300);
+	//	}
+	//	else {
+	//		$e.stop().animate({'left':'0'}, 300);
+	//	}
+	//});
+
 });

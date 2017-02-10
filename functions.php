@@ -183,6 +183,16 @@ function amoeba_tag_cloud($tag_string){
 }
 add_filter('wp_generate_tag_cloud', 'amoeba_tag_cloud', 10, 3);
 
+function amoeba_get_option($options, $section, $name) {
+	if (isset($options[$section])) {
+		$section = $options[$section];
+		if (isset($section[$name])) {
+			return $section[$name];
+		}
+	}
+	return '';
+}
+
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/options.php';
 //require get_template_directory() . '/inc/options-demo.php';
