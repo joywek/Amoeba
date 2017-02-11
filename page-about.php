@@ -17,8 +17,8 @@ get_header(); ?>
 			<aside class="widget widget-profile">
 				<div class="avatar"></div>
 				<div class="title">
-					<h2><?php echo amoeba_get_option($options, 'profile', 'name'); ?></h2>
-					<h6><?php echo amoeba_get_option($options, 'profile', 'status'); ?></h6>
+					<h2><?php echo amoeba_get_option($options, 'profile', 'name', __('Not Configured')); ?></h2>
+					<h6><?php echo amoeba_get_option($options, 'profile', 'status', __('Not Configured')); ?></h6>
 				</div>
 			</aside>
 			<ul class="nav">
@@ -53,7 +53,7 @@ get_header(); ?>
 			<h4 id="intro" class="section-header">
 				<span>About Me</span>
 			</h4>
-			<p><?php echo amoeba_get_option($options, 'profile', 'introduction'); ?></p>
+			<?php amoeba_markdown(amoeba_get_option($options, 'profile', 'introduction', __('Not Configured'))); ?>
 		</div>
 	</div>
 </div>
