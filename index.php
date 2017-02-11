@@ -10,13 +10,15 @@
  * @package Amoeba
  */
 
+$script = '<script type="text/javascript">(function($){window.onload=function(){$("#main").append($("#site-footer"));}})(jQuery);</script>';
+
 get_header();
 ?>
 
 <div id="site-body">
-	<?php if (have_posts()): ?>
-		<div id="main" class="main">
-		<?php
+	<div id="main" class="main">
+	<?php
+		if (have_posts()):
 			while (have_posts()) : the_post();
 				get_template_part('template-parts/content', get_post_format());
 			endwhile;
@@ -26,11 +28,11 @@ get_header();
 				'next_text'          => __('Next page', 'amoeba'),
 				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'amoeba') . ' </span>',
 			));
-		?>
-		</div>
-	<?php else: ?>
-		<?php get_template_part('no-results', 'archive'); ?>		
-	<?php endif; ?>
+		else:
+			get_template_part('template-parts/no-result', 'archive');
+		endif;
+	?>
+	</div>
 	<?php get_sidebar(); ?>
 </div>
 

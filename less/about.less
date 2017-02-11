@@ -10,7 +10,7 @@
 @main-color: #4a4a4a;
 @main-title-color: #000;
 @main-subtitle-color: #d7ac39;
-@main-line-color: #d0d0d0;
+@main-line-color: #ccc;
 
 @import "base.less";
 @import "header.less";
@@ -23,12 +23,12 @@
 }
 
 #site-body {
+	position: absolute;
+	top: 0;
+	bottom: 0;
 	width: 100%;
-	height: e("calc(100% - 50px)");
 	display: flex;
 	flex-flow: row wrap;
-	margin-top: @header-height;
-	position: absolute;
 }
 
 .sidebar .widget-area {

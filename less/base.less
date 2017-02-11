@@ -9,7 +9,6 @@ body {
 	font-family: "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
 	-webkit-font-smoothing: antialiased;
 	color: #30384C;
-	background-color: #fff;
 	font-weight: 400;
 	line-height: 1.28;
 	font-size: 16px;
@@ -106,6 +105,46 @@ blockquote {
 
 blockquote p {
 	padding: 10px 0;
+}
+
+.quote {
+	margin: 0.25em 1.5em 0 0em;
+}
+
+.quote:before, .quote:after {
+	content: "";
+	width: 35%;
+	display: block;
+	margin: 1em auto 1em;
+	height: 0;
+	border: 1px dotted #ccc;
+}
+
+.quote p {
+	width: 80%;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 1.5em;
+	line-height: 1.7em;
+	font-weight: 400;
+}
+
+.quote p:before, .quote p:after {
+	font-size: 2.2em;
+	font-weight: 700;
+	opacity: 0.25;
+}
+
+.quote p:before {
+	content: "“";
+	margin-right: .5em;
+}
+
+.quote p:after {
+	content: "”";
+	display: inline-block;
+	line-height: 0;
+	transform: translate(0.3em, 0.5em);
 }
 
 table {

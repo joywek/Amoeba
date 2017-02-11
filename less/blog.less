@@ -9,24 +9,36 @@
 @import "comment.less";
 @import "highlight.less";
 
+body {
+	background: #4d4d4d;
+}
+
 #site-body {
-	display: flex;
-	flex-flow: row-reverse nowrap;
-	padding: 50px 0 0 0;
+	position: absolute;
+	top: @header-height;
+	bottom: 0;
+	width: 100%;
 }
 
 #main {
-	flex: 1;
+	position: absolute;
+	left: @sidebar-width;
+	right: 0;
+	height: 100%;
+	overflow: scroll;
 	min-width: 0;
-	margin-left: @sidebar-width;
+	background: #fff;
 }
 
 @media screen and (max-width: 960px) {
-	#widget-area {
-		display: none;
+	#sidebar {
+		left: -@sidebar-width;
 	}
 	.blog-content, #site-footer {
 		margin-left: 0;
+	}
+	#main {
+		left: 0;
 	}
 	#sidebar-toggle {
 		display: block;
@@ -53,6 +65,10 @@
 	background: #303030;
 }
 
+.pagination {
+	margin: 30px 0;
+}
+
 .pagination .nav-links {
 	text-align: center;
 }
@@ -76,4 +92,8 @@
 .pagination a:active,
 .pagination .current {
 	background: @theme-hicolor;
+}
+
+.no-result {
+	padding: 30px;
 }

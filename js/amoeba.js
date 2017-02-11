@@ -4,13 +4,13 @@ $jquery(function($) {
 
 	var $adminbar = $('#wpadminbar');
 	var $header = $('#site-header');
+	var $body = $('#site-body');
 	var $sidebar = $('#sidebar');
 	var $widgets = $('#widget-area');
 	
 	function layout() {
 		$header.css('top', $adminbar.is(':visible') ? $adminbar.height() + 'px' : 0);
-		var height = $(window).height() - $header.position().top - $header.height();
-		$sidebar.css({ top: ($header.position().top + $header.height()) + 'px', height: height + 'px'});
+		$body.css('top', $header.position().top + $header.height());
 	}
 	layout();
 
@@ -46,11 +46,20 @@ $jquery(function($) {
 	});
 
 	$('#sidebar-toggle').click(function() {
-		$widgets.toggle(200, function() {
-			if (!$widgets.is(':visible')) {
-				$widgets.css('display', '');
-			}
-		});
+		if ($sidebar.position().left == 0) {
+			$sidebar.stop().animate({ 'left': '-250px' }, 300, function() {
+				$sidebar.css('left', '');
+			});
+		}
+		else {
+			$sidebar.stop().animate({ 'left': '0' }, 300);
+		}
+		//$widgets.toggle(200, function() {
+		//	if (!$widgets.is(':visible')) {
+		//		$widgets.css('display', '');
+		//	}
+		//});
+		
 		//if ($sidebar.position().left == 0) {
 		//	$sidebar.animate({left:'-220px'}, function() {
 		//		$sidebar.css('left', '');

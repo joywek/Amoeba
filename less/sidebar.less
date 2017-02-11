@@ -1,14 +1,14 @@
 .sidebar {
 	display: flex;
-	height: 100%;
-	position: fixed;
+	position: absolute;
 	left: 0;
-	width: @sidebar-width;
+	height: 100%;
+	overflow: scroll;
 	z-index: 1;
 }
 
 #widget-area {
-	width: 100%;
+	width: @sidebar-width - 40px;
 	padding: 20px;
 	background-color: #384157;
 	color: #8390a8;

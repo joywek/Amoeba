@@ -5,10 +5,12 @@
  * @package Amoeba
  */
 
+$script = '<script type="text/javascript">(function($){window.onload=function(){$("#main").append($("#site-footer"));}})(jQuery);</script>';
+
 get_header(); ?>
 
 <div id="site-body">
-	<div class="blog-content">
+	<div id="main">
 		<?php
 		while (have_posts()) : the_post();
 			get_template_part('template-parts/content', get_post_format());
