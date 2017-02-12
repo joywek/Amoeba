@@ -12,7 +12,7 @@ class ThemeAnalyticsOptionsPage extends OptionsBasePage {
 	}
 
 	function register_settings() {
-		$this->options = get_option('amoeba_option_analytics');
+		$this->options = get_option($this->option_key);
 		register_setting($this->option_key, $this->option_key);
 		add_settings_section('analytics_section', __('Analytics Settings', 'amoeba'), null, $this->menu_slug);
 		add_settings_field(
