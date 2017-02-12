@@ -6,11 +6,13 @@ $jquery(function($) {
 	var $header = $('#site-header');
 	var $body = $('#site-body');
 	var $sidebar = $('#sidebar');
-	var $widgets = $('#widget-area');
 	
 	function layout() {
-		$header.css('top', $adminbar.is(':visible') ? $adminbar.height() + 'px' : 0);
-		$body.css('top', $header.position().top + $header.height());
+		var top = $adminbar.is(':visible') ? $adminbar.height() : 0;
+		$header.css('top', top + 'px');
+		top += $header.height();
+		$body.css('top', top + 'px');
+		$sidebar.css({'top': top + 'px', 'height': ($(window).height() - top) + 'px'});
 	}
 	layout();
 
@@ -32,9 +34,6 @@ $jquery(function($) {
 	});
 
 	$(window).scroll(function() {
-		if ($widgets.is(':visible') && $('#sidebar-toggle').is(':visible')) {
-			$widgets.toggle();
-		}
 		var $backToTopButton = $('#back-to-top');
 		var st = $(window).scrollTop();
 		if (st > 200) {
@@ -54,20 +53,6 @@ $jquery(function($) {
 		else {
 			$sidebar.stop().animate({ 'left': '0' }, 300);
 		}
-		//$widgets.toggle(200, function() {
-		//	if (!$widgets.is(':visible')) {
-		//		$widgets.css('display', '');
-		//	}
-		//});
-		
-		//if ($sidebar.position().left == 0) {
-		//	$sidebar.animate({left:'-220px'}, function() {
-		//		$sidebar.css('left', '');
-		//	});
-		//}
-		//else {
-		//	$sidebar.animate({left:'0px'});
-		//}
 	});
 
 	var Pager = {

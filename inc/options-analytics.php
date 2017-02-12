@@ -1,29 +1,31 @@
 <?php
 
-class ThemeAnalyticsOptionsPage {
+require_once('options-base.php');
 
-	public $menu_slug = 'amoeba-options-analytics';
-	public $page_title;
-	public $menu_title;
+class ThemeAnalyticsOptionsPage extends OptionsBasePage {
 
 	function __construct() {
-		$this->page_title = __('Analytics Settings');
-		$this->menu_title = __('Analytics');
+		$this->menu_slug = 'amoeba-options-analytics';
+		$this->page_title = __('Analytics Settings', 'amoeba');
+		$this->menu_title = __('Analytics', 'amoeba');
+		$this->option_key = 'amoeba_options_analytics';
 	}
 
 	function register_settings() {
-		add_settings_section('analytics_section', __('Analytics Settings'), null, $this->menu_slug);
+		$this->options = get_option('amoeba_option_analytics');
+		register_setting($this->option_key, $this->option_key);
+		add_settings_section('analytics_section', __('Analytics Settings', 'amoeba'), null, $this->menu_slug);
 		add_settings_field(
 			'trackgin_id', 
-			__('Trackgin ID'), 
+			__('Trackgin ID', 'amoeba'), 
 			array($this, 'display_tracking_id_field'),
 			$this->menu_slug, 
 			'analytics_section');
 	}
 	
 	function display_tracking_id_field() {
-		echo '<input type="text" id="tracking_id" name="amoeba_options[analytics][tracking_id]" value="', 
-			$this->options['analytics']['tracking_id'], '" />';
+		echo '<input type="text" id="analytics-tracking-id" name="', $this->option_key, '[tracking_id]" value="', 
+			$this->options['tracking_id'], '" class="regular-text" />';
 	}
 
 }

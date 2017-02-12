@@ -1,6 +1,8 @@
-.sidebar {
+#sidebar {
 	display: flex;
-	position: absolute;
+	position: fixed;
+	top: @header-height;
+	bottom: 0;
 	left: 0;
 	height: 100%;
 	overflow: scroll;
@@ -10,7 +12,7 @@
 #widget-area {
 	width: @sidebar-width - 40px;
 	padding: 20px;
-	background-color: #384157;
+	background: @sidebar-bgcolor;
 	color: #8390a8;
 	overflow: scroll;
 	height: e("calc(100% - 40px)");
@@ -41,7 +43,7 @@
 }
 
 #sidebar-toggle {
-	background-color: #757575;
+	background-color: @sidebar-bgcolor;
 	font-size: 12px;
 	width: 40px;
 	height: 40px;

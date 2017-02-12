@@ -6,14 +6,14 @@ class ThemeAboutOptionsPage extends OptionsBasePage {
 
 	function __construct() {
 		$this->menu_slug = 'amoeba-options-about';
-		$this->page_title = __('About Settings');
-		$this->menu_title = __('About');
-		$this->option_key = 'amoeba_option_about';
+		$this->page_title = __('About Settings', 'amoeba');
+		$this->menu_title = __('About', 'amoeba');
+		$this->option_key = 'amoeba_options_about';
 	}
 
 	function register_settings() {
 
-		$this->options = get_option('amoeba_option_about');
+		$this->options = get_option($this->option_key);
 		register_setting($this->option_key, $this->option_key);
 
 		add_settings_section('profile_section', __("Profile"), null, $this->menu_slug);

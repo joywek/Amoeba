@@ -21,11 +21,11 @@ class ThemeOptionsManager {
 	public function setup_menu() {
 
 		$pages = $this->pages;
-		$home_page = array_shift($pages);
+		$home_page = $pages[0];
 
 		add_menu_page(
 			$home_page->page_title, // Page title
-			__('Amoeba'), // Menu title
+			__('Amoeba', 'amoeba'), // Menu title
 			'manage_options', // The capability required for this menu to be displayed to the user 
 			$home_page->menu_slug, // The slug name to refer to this menu by (should be unique for this menu).
 			array($home_page, 'render_page'));
