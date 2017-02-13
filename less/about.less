@@ -216,15 +216,155 @@
 	overflow: scroll;
 }
 
-.section {
+.profile-section .inner,
+.contact-section .inner,
+.experience-section .inner {
 	padding: 30px 0;
 	width: 80%;
 	margin: 0 auto;
 }
 
 .section-header {
-	padding: 0 0 6px 0;
-	border-bottom: 1px solid @main-line-color;
-	margin-bottom: 0;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.section-header:after {
+	display: block;
+	content: "";
+	width: 20%;
+	height: 2px;
+	margin: 0 auto;
+	background: @main-line-color;
+}
+
+.contact-section {
+	background: rgba(51, 59, 80, 1);
+}
+
+.contact-section .inner {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.contact-description {
+	flex: 0.4;
+	margin-right: 40px;
+}
+
+.contact-description h2 {
+	color: #fff;
+}
+
+.contact-description p {
+	color: #BEC7D5;
+	line-height: 1.9em;
+}
+
+.contact-form {
+	flex: 0.6;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.contact-form input, .contact-form .send {
+	height: 36px;
+	width: 100%;
+}
+
+.contact-form input, .contact-form textarea {
+	border: 1px solid transparent;
+	color: #2D2D2D;
+	margin: 0 0 10px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.contact-form .message {
+	width: 100%;
+	height: 150px;
+}
+
+.contact-form .name {
+	flex: 0.5;
+	margin-right: 16px;
+}
+
+.contact-form .email {
+	flex: 0.5;
+}
+
+.contact-form .send {
+	background: rgba(0, 214, 70, 1);
+	height: 45px;
+	border: none;
+}
+
+.experience-section {
+	position: relative;
+}
+
+.experience-section .timeline {
+	position: absolute;
+	left: e("calc(50% - 1px)");
+	width: 2px;
+	height: e("calc(100% - 80px)");
+	background: rgba(0, 214, 70, 1);
+}
+
+.experience-item {
+	width: 50%;
+	padding: 15px 50px;
+	box-sizing: border-box;
+}
+
+.experience-item .dot {
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	left: e("calc(50% - 7px)");
+	background: rgba(0, 214, 70, 1);
+	border-radius: 50%;
+	margin-top: 4px;
+}
+
+.experience-item .date {
+	color: #00D646;
+	font-weight: bold;
+}
+
+.experience-item h4 {
+	margin-top: 5px;
+}
+
+.experience-item h6 {
+	margin: 0;
+	line-height: 1.9em;
+	color: #000;
+}
+
+.experience-item p {
+	margin: 0;
+	color: #666;
+}
+
+.experience-section .left {
+	text-align: right;
+}
+
+.experience-section .right {
+	margin-left: 50%;
+	text-align: left;
+}
+
+@media screen and (max-width: 640px) {
+	.contact-section .innser {
+		flex-flow: column;
+	}
+	.contact-description {
+		margin-right: 0;
+	}
 }
 

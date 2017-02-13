@@ -49,11 +49,63 @@ get_header(); ?>
 		</ul>
 	</div>
 	<div class="main">
-		<div class="section experience">
-			<h4 id="intro" class="section-header">
-				<span>About Me</span>
-			</h4>
-			<?php amoeba_markdown(amoeba_get_option($options, 'profile', 'introduction', __('Not Configured'))); ?>
+		<div class="section profile-section">
+			<div class="inner">
+				<h1 id="intro" class="section-header">
+					<span>About Me</span>
+				</h1>
+				<?php amoeba_markdown(amoeba_get_option($options, 'profile', 'introduction', __('Not Configured'))); ?>
+			</div>
+		</div>
+		<div class="section contact-section">
+			<div class="inner">
+				<div class="contact-description">
+					<h2>CONTACT</h2>
+					<p>I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.</p>
+					<p>info@mysite.com<br />Tel: 1-800-000-0000</p>
+				</div>
+				<div class="contact-form">
+					<input type="text" name="name" class="name" placeholder="Name" />
+					<input type="text" name="email" class="email" placeholder="Email" />
+					<input type="text" name="subject" class="subject" placeholder="Subject" />
+					<textarea name="message" class="message" placeholder="Message"></textarea>
+					<button id="send" class="send">Send</button>
+				</div>
+			</div>
+		</div>
+		<div class="section experience-section">
+			<h1 class="section-header">EXPERIENCE</h1>
+			<div class="timeline">
+			</div>
+			<div class="experience-item left">
+				<div class="dot"></div>
+				<span class="date">2014-2016</span>
+				<h4 class="company">HOP!</h4>
+				<h6 class="title">Creative Design Lead</h6>
+				<p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.</p>
+			</div>
+			<div class="experience-item right">
+				<div class="dot"></div>
+				<span class="date">2014-2016</span>
+				<h4 class="company">HOP!</h4>
+				<h6 class="title">Creative Design Lead</h6>
+				<p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.</p>
+			</div>
+			<div class="experience-item left">
+				<div class="dot"></div>
+				<span class="date">2014-2016</span>
+				<h4 class="company">HOP!</h4>
+				<h6 class="title">Creative Design Lead</h6>
+				<p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.</p>
+			</div>
+		</div>
+		<div class="section profile-section" style="background:#ccc">
+			<div class="inner">
+				<h1 id="intro" class="section-header">
+					<span>About Me</span>
+				</h1>
+				<?php amoeba_markdown(amoeba_get_option($options, 'profile', 'introduction', __('Not Configured'))); ?>
+			</div>
 		</div>
 	</div>
 </div>
