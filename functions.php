@@ -201,6 +201,8 @@ function amoeba_markdown($text) {
 	echo $md->text($text);
 }
 
+add_filter( 'widget_meta_poweredby', '__return_empty_string' );
+
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/options.php';
 //require get_template_directory() . '/inc/options-demo.php';
