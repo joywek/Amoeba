@@ -122,9 +122,6 @@ function amoeba_scripts() {
 	if (is_page('about')) {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/css/about.css');
 	}
-	else if (is_page()) {
-		wp_enqueue_style('amoeba_style', get_template_directory_uri() . '/css/page.css');
-	}
 	else {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/css/blog.css');
 	}
