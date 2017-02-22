@@ -1,6 +1,6 @@
 <?php
 /**
- * Blog navigation widget.
+ * Social widget.
  *
  * @package Amoeba
  * @subpackage Amoeba
@@ -8,54 +8,48 @@
  */
 
 /**
- * Core class used to implement a Blog Navigation widget.
+ * Core class used to implement a Social widget.
  */
-class AMBBlogNavigationWidget extends WP_Widget {
+class AMBSocialWidget extends WP_Widget {
 
 	/**
-	 * Sets up a new Blog Navigation widget instance.
+	 * Sets up a new Social widget instance.
 	 *
 	 * @access public
 	 */
 	public function __construct() {
 		$widget_ops = array(
-			'classname' => 'widget_blog_nav',
-			'description' => __( 'A short navigation for blog, containing archives, categories and tags.' ),
+			'classname' => 'widget_social',
+			'description' => __( '' ),
 			'customize_selective_refresh' => true,
 		);
-		parent::__construct( 'blog-nav', __( 'Blog Navigation' ), $widget_ops );
+		parent::__construct( 'social', __( 'Social' ), $widget_ops );
 	}
 
 	/**
-	 * Outputs the content for the current Blog Navigation widget instance.
+	 * Outputs the content for the current Social widget instance.
 	 *
 	 * @access public
 	 *
 	 * @param array $args     Display arguments including 'before_title', 'after_title',
 	 *                        'before_widget', and 'after_widget'.
-	 * @param array $instance Settings for the current Blog Navigation widget instance.
+	 * @param array $instance Settings for the current Social widget instance.
 	 */
 	public function widget( $args, $instance ) {
 		static $first_dropdown = true;
 
-		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Blog Navigation' ) : $instance['title'], $instance, $this->id_base );
+		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Social' ) : $instance['title'], $instance, $this->id_base );
 
 		echo $args['before_widget'];
 		if ( $title ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
-		$user = wp_get_current_user();
-
-		$desc = esc_html(get_the_author_meta('description', $user->user_ID));
-		if (trim($desc) === '') {
-			$desc = 'Apparently, this user prefers to keep an air of mystery about them.';
-		}
 		?>
-		<ul>
-			<li class="nav-item-arc"><a href="<?php echo get_home_url(), '/archives/' ?>"><?php _e('Archives', 'amoeba'); ?></a>
-			<li class="nav-item-cat"><a href="<?php echo get_home_url(), '/categories/' ?>"><?php _e('Categories', 'amoeba'); ?></a>
-			<li class="nav-item-tag"><a href="<?php echo get_home_url(), '/tags/' ?>"><?php _e('Tags', 'amoeba'); ?></a>
+		<ul class="social">
+			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 		</ul>
 		<?php
 
@@ -63,7 +57,7 @@ class AMBBlogNavigationWidget extends WP_Widget {
 	}
 
 	/**
-	 * Handles updating settings for the current Blog Navigation widget instance.
+	 * Handles updating settings for the current Social widget instance.
 	 *
 	 * @access public
 	 *
@@ -82,7 +76,7 @@ class AMBBlogNavigationWidget extends WP_Widget {
 	}
 
 	/**
-	 * Outputs the settings form for the Blog Navigation widget.
+	 * Outputs the settings form for the Social widget.
 	 *
 	 * @access public
 	 *

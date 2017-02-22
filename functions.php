@@ -159,6 +159,7 @@ function amoeba_widgets_init() {
 
 	register_widget('AMBProfileWidget');
 	register_widget('AMBBlogNavigationWidget');
+	register_widget('AMBSocialWidget');
 
 	register_sidebar(array(
 		'name'          => esc_html__('Blog Sidebar', 'amoeba'),
@@ -238,6 +239,7 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/options.php';
 require get_template_directory() . '/widgets/profile.php';
 require get_template_directory() . '/widgets/blog-navigation.php';
+require get_template_directory() . '/widgets/social.php';
 //require get_template_directory() . '/inc/options-demo.php';
 
 ?>

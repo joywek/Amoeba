@@ -91,7 +91,7 @@ $jquery(function($) {
 	let blog = new Blog();
 	
 	function layout() {
-		blog.sidebar.css({'height': $(window).height() - blog.sidebar.position().top + 'px'});
+		blog.sidebar.css({'height': $(window).height() - blog.sidebar.position().top - 45 + 'px'});
 	}
 	layout();
 	$(window).resize(function() {
