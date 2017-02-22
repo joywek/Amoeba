@@ -1,6 +1,4 @@
-@sidebar-width: 250px;
-@sidebar-bgcolor: #384157;
-
+@import "variables.less";
 @import "base.less";
 @import "header.less";
 @import "footer.less";
@@ -14,14 +12,17 @@ body {
 	background: #4d4d4d;
 }
 
+#container {
+	background: #fff;
+}
+
 #site-body {
-	margin-top: @header-height;
+	margin-top: unit(@header-height, px);
+	margin-left: unit(@sidebar-width, px);
 }
 
 #main {
 	min-width: 0;
-	margin-left: @sidebar-width;
-	background: #fff;
 	padding: 15px 0 0 0;
 }
 

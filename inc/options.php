@@ -1,5 +1,6 @@
 <?php
 
+require_once('options-gen.php');
 require_once('options-about.php');
 require_once('options-analytics.php');
 
@@ -10,6 +11,7 @@ class ThemeOptionsManager {
 	function __construct() {
 
 		$this->pages = array(
+			new ThemeGeneralOptionsPage(),
 			new ThemeAboutOptionsPage(),
 			new ThemeAnalyticsOptionsPage(),
 		);

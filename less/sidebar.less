@@ -1,58 +1,49 @@
 #sidebar {
 	display: flex;
 	position: fixed;
-	top: @header-height;
+	top: unit(@header-height, px);
 	bottom: 0;
 	left: 0;
 	height: 100%;
-	overflow: scroll;
+	width: unit(@sidebar-width, px);
+	box-sizing: border-box;
+	overflow: hidden;
 	z-index: 1;
+	border-right: 1px solid #d9e3ea;
+	background: @sidebar-color-bg;
+	color: @sidebar-color-text;
+}
+
+.admin-bar #sidebar {
+	top: unit(@header-height + 32, px);
 }
 
 #widget-area {
-	width: @sidebar-width - 40px;
-	padding: 20px;
-	background: @sidebar-bgcolor;
-	color: #8390a8;
+	padding: 20px 0;
 	overflow: scroll;
 	height: e("calc(100% - 40px)");
 }
 
-#widget-area::-webkit-scrollbar {
+#sidebar::-webkit-scrollbar, #widget-area::-webkit-scrollbar {
 	display: none;
 }
 
-.sidebar .widget {
-	margin: 0 0 -1px;
-	padding: 0 0 20px 0;
+.widget {
+	padding: 10px 20px;
 }
 
-.sidebar .widget,
-.sidebar .widget a {
-	color: #8390a8;
+.widget a {
+	color: @sidebar-color-link;
 }
 
-.sidebar .widget a:hover {
-	color: #fff;
+.widget a:hover {
+	color: @sidebar-color-hover;
 }
 
-.sidebar .widget-title {
+.widget-title {
 	text-transform: uppercase;
-	margin: 0 0 10px 0;
-	color: #fff;
-}
-
-#sidebar-toggle {
-	background-color: @sidebar-bgcolor;
-	font-size: 12px;
-	width: 40px;
-	height: 40px;
-	display: none;
-	margin: 10px 0 0 0;
-}
-
-#sidebar-toggle:hover {
-	background-color: @theme-hicolor;
+	margin: 0 0 20px 0;
+	color: @sidebar-color-title;
 }
 
 /* Make sure select elements fit in widgets. */
@@ -62,7 +53,7 @@
 
 .widget ul {
 	list-style: none;
-	padding: 0 0 0 4px;
+	padding: 0;
 	margin: 0;
 	font-size: 0.9em;
 }
@@ -76,6 +67,54 @@
 	font-size: 15px;
 }
 
+.widget_profile {
+	text-align: center;
+}
+
+.widget_profile .widget-title {
+	display: none;
+}
+
+.profile-avatar {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+}
+
+.profile-title {
+	margin: 10px 0 0 0 ;
+	color: @sidebar-color-title;
+}
+
+.profile-biographical-info {
+	margin-top: 10px;
+}
+
+.widget_blog_nav {
+	padding: 10px 0;
+}
+
+.widget_blog_nav .widget-title {
+	display: none;
+}
+
+.widget_blog_nav ul {
+	text-align: center;
+}
+
+.widget_blog_nav li {
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 0;
+	border-top: 1px solid #d8e3eb;
+}
+
+.widget_blog_nav li:last-of-type {
+	border-bottom: 1px solid #d8e3eb;
+}
+	
 .widget_recent_entries li::before {
 	content: '\f016';
 	margin-right: 5px;
@@ -84,9 +123,6 @@
 .widget_categories li::before {
 	content: '\f114';
 	margin-right: 8px;
-}
-
-.widget_tag_cloud {
 }
 
 .widget_archive li::before {

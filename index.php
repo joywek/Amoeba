@@ -10,8 +10,6 @@
  * @package Amoeba
  */
 
-$script = '<script type="text/javascript">(function($){window.onload=function(){$("#main").append($("#site-footer"));}})(jQuery);</script>';
-
 get_header();
 ?>
 

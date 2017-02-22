@@ -13,10 +13,10 @@
 get_header(); ?>
 
 <div id="site-body">
-	<div class="page-wrap">
+	<div id="main" class="main">
 	<?php
 		while (have_posts()) : the_post();
-			get_template_part('template-parts/content', get_post_format());
+			get_template_part('template-parts/content', 'page');
 		endwhile;
 	?>
 	</div>

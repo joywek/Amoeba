@@ -92,6 +92,23 @@ function amoeba_setup() {
 
 	// Indicate widget sidebars can use selective refresh in the Customizer.
 	add_theme_support('customize-selective-refresh-widgets');
+
+	$pages = array(
+		array('ID' => 'amoeba_archives_page', 'title' => __('Archives')),
+		array('ID' => 'amoeba_categories_page', 'title' => __('Categories')),
+		array('ID' => 'amoeba_tags_page', 'title' => __('Tags'))
+	);
+	foreach ($pages as $page) {
+		$pageid = get_option($page['ID']);
+		$params = array(
+			'ID'           => $pageid,
+			'post_type'    => 'page',
+			'post_title'   => $page['title'],
+			'post_status'  => 'publish',
+		);
+		$pageid = wp_insert_post($params);
+		update_option($page['ID'], $pageid);
+	}
 }
 endif; // amoeba_setup
 add_action('after_setup_theme', 'amoeba_setup');
@@ -102,14 +119,14 @@ add_action('after_setup_theme', 'amoeba_setup');
 function amoeba_scripts() {
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/fonts/font-awesome/4.7.0/css/font-awesome.min.css');
 
-	if (is_home() || is_page('blog') || is_single() || is_category() || is_tag() || is_archive() || is_search()) {
-		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/css/blog.css');
-	}
-	else if (is_page('about')) {
+	if (is_page('about')) {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/css/about.css');
 	}
-	else {
+	else if (is_page()) {
 		wp_enqueue_style('amoeba_style', get_template_directory_uri() . '/css/page.css');
+	}
+	else {
+		wp_enqueue_style('amoeba-style', get_template_directory_uri() . '/css/blog.css');
 	}
 
 	wp_deregister_script( 'jquery' );
@@ -142,6 +159,10 @@ endif;
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function amoeba_widgets_init() {
+
+	register_widget('AMBProfileWidget');
+	register_widget('AMBBlogNavigationWidget');
+
 	register_sidebar(array(
 		'name'          => esc_html__('Blog Sidebar', 'amoeba'),
 		'id'            => 'blog-sidebar',
@@ -172,11 +193,32 @@ function amoeba_widgets_init() {
 }
 add_action('widgets_init', 'amoeba_widgets_init');
 
-function amoeba_tag_cloud_widget($args) {
-	//$args['format'] = 'list';
-	return $args;
+function amoeba_generate_tag_cloud($content, $tags, $args) { 
+	$count=0;
+	$output=preg_replace_callback(
+		'(</a\s*>)', 
+		function($match) use ($tags, &$count) {
+			return '<span class="count">' . $tags[$count++]->count . '</span></a>'; 
+		},
+		$content);
+	return $output;
 }
-add_filter('widget_tag_cloud_args', 'amoeba_tag_cloud_widget');
+add_filter('wp_generate_tag_cloud', 'amoeba_generate_tag_cloud', 10, 3);  
+
+function amoeba_body_class($classes) {
+	if (is_page_template('Default')) {
+		$classes[] = is_active_sidebar('blog-sidebar') ? 'col-2' : 'col-1';
+	}
+	return $classes;
+}
+add_filter('body_class', function($c) {
+	if (is_home()) {
+		if (!is_active_sidebar('blog-sidebar')) {
+			$c[] = 'nosidebar';
+		}
+	}
+	return $c;
+});
 
 function amoeba_tag_cloud($tag_string){
 	return preg_replace("/style='font-size:.+pt;'/", '', $tag_string);
@@ -185,11 +227,15 @@ add_filter('wp_generate_tag_cloud', 'amoeba_tag_cloud', 10, 3);
 
 function amoeba_get_option($options, $section, $name, $default_value = '') {
 	if (!empty($options)) {
-		if (isset($options[$section])) {
-			$section = $options[$section];
-			if (isset($section[$name])) {
-				return $section[$name];
+		if ($section) {
+			if (isset($options[$section])) {
+				$section = $options[$section];
 			}
+		} else {
+			$section = &$options;
+		}
+		if (isset($section[$name])) {
+			return $section[$name];
 		}
 	}
 	return $default_value;
@@ -205,6 +251,8 @@ add_filter( 'widget_meta_poweredby', '__return_empty_string' );
 
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/options.php';
+require get_template_directory() . '/widgets/profile.php';
+require get_template_directory() . '/widgets/blog-navigation.php';
 //require get_template_directory() . '/inc/options-demo.php';
 
 ?>

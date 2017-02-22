@@ -3,27 +3,7 @@ var $jquery = jQuery.noConflict();
 $jquery(function($) {
 
 	var $adminbar = $('#wpadminbar');
-	var $header = $('#site-header');
-	var $body = $('#site-body');
-	var $sidebar = $('#sidebar');
 	
-	function layout() {
-		var top = $adminbar.is(':visible') ? $adminbar.height() : 0;
-		$header.css('top', top + 'px');
-		top += $header.height();
-		$body.css('top', top + 'px');
-		$sidebar.css({'top': top + 'px', 'height': ($(window).height() - top) + 'px'});
-	}
-	layout();
-
-	$(window).resize(function() {
-		layout();
-		if ($(this).width() > 960) {
-			$sidebar.css('left', '');
-		}
-	});
-
-
 	$('#nav-menu-toggle').on('click', function() {
 		var $menu = $('#nav-menu');
 		$menu.toggle(300, function() {
@@ -44,16 +24,45 @@ $jquery(function($) {
 		}
 	});
 
-	$('#sidebar-toggle').click(function() {
-		if ($sidebar.position().left == 0) {
-			$sidebar.stop().animate({ 'left': '-250px' }, 300, function() {
-				$sidebar.css('left', '');
+	class Blog {
+
+		constructor() {
+			this.sidebar = $('#sidebar');
+			this.container = $('#container');
+
+			var blog = this;
+
+			$('#main').click(function() {
+				if ($(window).width() <= 800) {
+					blog.closeSidebar();
+				}
+			});
+			$('#sidebar-toggle').click(function() {
+				blog.toggleSidebar();
 			});
 		}
-		else {
-			$sidebar.stop().animate({ 'left': '0' }, 300);
+
+		openSidebar() {
+			this.sidebar.css('left', '0');
+			this.container.css('margin-left', '250px');
 		}
-	});
+
+		closeSidebar() {
+			$(document.body).addClass('sidebar-close');
+			this.sidebar.css('left', '-250px');
+			this.container.css('margin-left', '0');
+		}
+		
+		toggleSidebar() {
+			if (this.sidebar.position().left == 0) {
+				this.closeSidebar();
+			}
+			else {
+				this.openSidebar();
+			}
+		}
+
+	}
 
 	var Pager = {
 
@@ -79,14 +88,13 @@ $jquery(function($) {
 
 	Pager.create();
 
-	//$('.main').click(function() {
-	//	$e = $('.widget-area');
-	//	if ($e.position().left == 0) {
-	//		$e.stop().animate({'left':'-250px'}, 300);
-	//	}
-	//	else {
-	//		$e.stop().animate({'left':'0'}, 300);
-	//	}
-	//});
-
+	let blog = new Blog();
+	
+	function layout() {
+		blog.sidebar.css({'height': $(window).height() - blog.sidebar.position().top + 'px'});
+	}
+	layout();
+	$(window).resize(function() {
+		layout();
+	});
 });

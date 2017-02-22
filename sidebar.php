@@ -10,11 +10,12 @@
 <?php if (is_active_sidebar('blog-sidebar')) : ?>
 	<div id="sidebar" class="sidebar clearfix" role="complementary">
 		<div id="widget-area">
-			<?php dynamic_sidebar('blog-sidebar'); ?>
+		<?php dynamic_sidebar('blog-sidebar'); ?>
 		</div>
-		<button id="sidebar-toggle">
+		<!--<button id="sidebar-toggle">
 			<i class="fa fa-bars"></i>
-		</button>
+			<span></span>
+		</button>-->
 	</div>
 <?php endif; ?>
 

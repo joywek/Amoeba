@@ -1,22 +1,18 @@
 #site-header {
 	display: flex;
 	flex: 1 100%;
-	background: #3B3738;
-	color: #fafafa;
+	background: @header-color-bg;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 	justify-content:center;
 	position: fixed;
 	top: 0;
+	left: 0;
 	width: 100%;
 	z-index: 1000;
 }
 
-.site-header-show {
-	top: 0;
-}
-
-.site-header-hide {
-	top: -50px;
+.admin-bar #site-header {
+	top: 32px;
 }
 
 #site-header .inner {
@@ -46,18 +42,12 @@
 .site-logo {
 	display: flex;
 	align-items: center;
-	color: #44B74A;
+	color: @header-color-title;
 	font-size: 24px;
 	padding: 0;
 	text-decoration: none;
 	text-transform:uppercase;
 	font-weight: 500;
-}
-
-.site-logo img {
-	margin-right: 4px;
-	width: 40px;
-	height: 40px;
 }
 
 .nav-menu {
@@ -71,17 +61,17 @@
 	line-height: 50px;
 	display: inline-block;
 	height: 50px;
-	color: #aaa;
+	color: @header-color-link;
 	text-decoration: none;
 	font-weight: 600;
 }
 
 .nav-menu .menu-item a:hover {
-  color: #fafafa;
+	color: @header-color-hover;
 }
 
 .nav-menu .current-menu-item a {
-	color: #fafafa;
+	color: @header-color-hover;
 }
 
 .nav-menu-toggle {
