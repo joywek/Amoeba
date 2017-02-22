@@ -1,7 +1,7 @@
 #sidebar {
 	display: flex;
 	position: fixed;
-	top: unit(@header-height, px);
+	top: 0;
 	bottom: 0;
 	left: 0;
 	height: 100%;
@@ -15,7 +15,7 @@
 }
 
 .admin-bar #sidebar {
-	top: unit(@header-height + 32, px);
+	top: unit(32, px);
 }
 
 #widget-area {
@@ -103,8 +103,6 @@
 }
 
 .widget_blog_nav li {
-	height: 40px;
-	line-height: 40px;
 	font-size: 1.2em;
 	font-weight: bold;
 	margin: 0;
@@ -114,7 +112,17 @@
 .widget_blog_nav li:last-of-type {
 	border-bottom: 1px solid #d8e3eb;
 }
-	
+
+.widget_blog_nav a {
+	padding: 12px 0;
+	box-sizing: border-box;
+	display: block;
+}
+
+.widget_blog_nav a:hover {
+	background: #fff;
+}
+
 .widget_recent_entries li::before {
 	content: '\f016';
 	margin-right: 5px;

@@ -7,6 +7,7 @@
 @import "article.less";
 @import "comment.less";
 @import "highlight.less";
+@import "404.less";
 
 body {
 	background: #4d4d4d;
@@ -14,11 +15,9 @@ body {
 
 #container {
 	background: #fff;
-}
-
-#site-body {
-	margin-top: unit(@header-height, px);
-	margin-left: unit(@sidebar-width, px);
+	position: relative;
+	left: unit(@sidebar-width, px);
+	top: unit(@header-height, px);
 }
 
 #main {
@@ -26,15 +25,12 @@ body {
 	padding: 15px 0 0 0;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 782px) {
 	#sidebar {
-		left: -@sidebar-width;
+		left: unit(-@sidebar-width, px);
 	}
-	#main {
-		margin-left: 0;
-	}
-	#sidebar-toggle {
-		display: block;
+	#container, #site-header {
+		left: 0;
 	}
 }
 
@@ -90,3 +86,5 @@ body {
 .no-result {
 	padding: 30px;
 }
+
+

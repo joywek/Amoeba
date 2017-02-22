@@ -193,24 +193,17 @@ function amoeba_widgets_init() {
 }
 add_action('widgets_init', 'amoeba_widgets_init');
 
-function amoeba_generate_tag_cloud($content, $tags, $args) { 
-	$count=0;
-	$output=preg_replace_callback(
-		'(</a\s*>)', 
+add_filter('wp_generate_tag_cloud', function($content, $tags, $args) {
+	$count = 0;
+	$output = preg_replace_callback(
+		'/(<a\s.*>).*(<\/a>)/U',
 		function($match) use ($tags, &$count) {
-			return '<span class="count">' . $tags[$count++]->count . '</span></a>'; 
+			return "$match[1]<span class=\"name\">" . $tags[$count]->name . '</span><span class="count">' . $tags[$count++]->count . "</span>$match[2]"; 
 		},
 		$content);
-	return $output;
-}
-add_filter('wp_generate_tag_cloud', 'amoeba_generate_tag_cloud', 10, 3);  
+	return preg_replace("/style='font-size:.+pt;'/", '', $output);
+}, 10, 3);
 
-function amoeba_body_class($classes) {
-	if (is_page_template('Default')) {
-		$classes[] = is_active_sidebar('blog-sidebar') ? 'col-2' : 'col-1';
-	}
-	return $classes;
-}
 add_filter('body_class', function($c) {
 	if (is_home()) {
 		if (!is_active_sidebar('blog-sidebar')) {
@@ -219,11 +212,6 @@ add_filter('body_class', function($c) {
 	}
 	return $c;
 });
-
-function amoeba_tag_cloud($tag_string){
-	return preg_replace("/style='font-size:.+pt;'/", '', $tag_string);
-}
-add_filter('wp_generate_tag_cloud', 'amoeba_tag_cloud', 10, 3);
 
 function amoeba_get_option($options, $section, $name, $default_value = '') {
 	if (!empty($options)) {

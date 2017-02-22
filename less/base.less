@@ -1,6 +1,10 @@
 @theme-hicolor: #33BBCC;
 @header-height: 50px;
 
+html, body {
+	height: 100%;
+}
+
 html {
 	padding: 0;
 }
@@ -175,12 +179,16 @@ table > tfoot > tr > td {
 }
 
 ::selection {
-    background: #243342;
-    color: #fff;
+    //background: #243342;
+    //color: #fff;
+	background: rgba(120, 220, 250, 0.7);
+	color: #2e4453;
 }
 ::-moz-selection {
-    background: #243342;
-    color: #fff;
+    //background: #243342;
+    //color: #fff;
+	background: rgba(120, 220, 250, 0.7);
+	color: #2e4453;
 }
 
 code {
@@ -193,6 +201,11 @@ code {
 .clearfix {
 	overflow:hidden;
 	zoom:1;
+}
+
+.inner {
+	width: 80%;
+	margin: 0 auto;
 }
 
 @media screen and (max-width: 640px) {

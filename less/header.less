@@ -6,8 +6,8 @@
 	justify-content:center;
 	position: fixed;
 	top: 0;
-	left: 0;
-	width: 100%;
+	left: unit(@sidebar-width, px);
+	right: 0;
 	z-index: 1000;
 }
 
@@ -17,7 +17,6 @@
 
 #site-header .inner {
 	display: flex;
-	width: 90%;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -76,7 +75,7 @@
 
 .nav-menu-toggle {
 	font-family: FontAwesome;
-	color: #aaa;
+	color: @header-color-link;
 	text-align: center;
 	font-size: 18px;
 	box-sizing: border-box;
@@ -88,8 +87,18 @@
 	display: none;
 }
 
+.nav-menu-toggle:hover, .nav-menu-toggle:focus {
+	color: @header-color-hover;
+}
+
 .nav-menu-toggle:before {
 	content: "\f0c9";
+}
+
+@media screen and (max-width: 782px) {
+	.admin-bar #site-header {
+		top: 46px;
+	}
 }
 
 @media screen and (max-width: 640px) {
@@ -98,7 +107,7 @@
 		width: 100%;
 	}
 	.navbar {
-		width: 90%;
+		width: 80%;
 	}
 	.nav-menu-toggle {
 		display: block;
@@ -110,10 +119,10 @@
 	.menu-item {
 		display: block;
 		text-align: center;
-		border-top: 1px solid #444;
+		border-top: 1px solid #0075a3;
 	}
-	.menu-item:hover {
-		background-color: #333;
+	.menu-item:hover, .menu-item:focus {
+		background-color: #0099d8;
 	}
 	.menu-item a {
 		width: 100%;
