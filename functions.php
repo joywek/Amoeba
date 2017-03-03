@@ -203,12 +203,17 @@ add_filter('wp_generate_tag_cloud', function($content, $tags, $args) {
 }, 10, 3);
 
 add_filter('body_class', function($c) {
-	if (is_home()) {
-		if (!is_active_sidebar('blog-sidebar')) {
-			$c[] = 'nosidebar';
-		}
+	if (!is_active_sidebar('blog-sidebar')) {
+		$c[] = 'nosidebar';
 	}
 	return $c;
+});
+
+add_action('template_redirect', function() {
+	if ($_SERVER['REQUEST_URI'] == '/tags/') {
+		amoeba_load_template(TEMPLATEPATH . '/tags.php');
+		exit;
+	}
 });
 
 function amoeba_get_option($options, $section, $name, $default_value = '') {
@@ -225,6 +230,16 @@ function amoeba_get_option($options, $section, $name, $default_value = '') {
 		}
 	}
 	return $default_value;
+}
+
+function amoeba_load_template($path) {
+	global $wp_query;
+	if ($wp_query->is_404) {
+		$wp_query->is_404 = false;
+		$wp_query->is_archive = true;
+	}
+	header("HTTP/1.1 200 OK");
+	include($path);
 }
 
 require_once('inc/parsedown.php');

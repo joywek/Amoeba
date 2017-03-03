@@ -21,6 +21,14 @@ body {
 	top: unit(@header-height, px);
 }
 
+.nosidebar #site-header {
+	left: 0;
+}
+
+.nosidebar #container {
+	margin-left: 0;
+}
+
 #main {
 	min-width: 0;
 	padding: 15px 0 0 0;
@@ -29,9 +37,6 @@ body {
 @media screen and (max-width: 782px) {
 	#sidebar {
 		left: unit(-@sidebar-width, px);
-	}
-	#site-header {
-		left: 0;
 	}
 	#container {
 		margin-left: 0;

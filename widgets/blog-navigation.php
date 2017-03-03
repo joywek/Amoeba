@@ -51,11 +51,14 @@ class AMBBlogNavigationWidget extends WP_Widget {
 		if (trim($desc) === '') {
 			$desc = 'Apparently, this user prefers to keep an air of mystery about them.';
 		}
+
+		$request_uri = $_SERVER['REQUEST_URI'];
+
 		?>
 		<ul>
-			<li class="nav-item-arc"><a href="<?php echo get_home_url(), '/archives/' ?>"><?php _e('Archives', 'amoeba'); ?></a>
-			<li class="nav-item-cat"><a href="<?php echo get_home_url(), '/categories/' ?>"><?php _e('Categories', 'amoeba'); ?></a>
-			<li class="nav-item-tag"><a href="<?php echo get_home_url(), '/tags/' ?>"><?php _e('Tags', 'amoeba'); ?></a>
+			<li class="nav-item-arc<?php echo $request_uri == '/archives/' ? ' current' : '' ?>"><a href="<?php echo get_home_url(), '/archives/' ?>"><?php _e('Archives', 'amoeba'); ?></a>
+			<li class="nav-item-cat<?php echo $request_uri == '/categories/' ? ' current' : '' ?>"><a href="<?php echo get_home_url(), '/categories/' ?>"><?php _e('Categories', 'amoeba'); ?></a>
+			<li class="nav-item-tag<?php echo $request_uri == '/tags/' ? ' current' : '' ?>"><a href="<?php echo get_home_url(), '/tags/' ?>"><?php _e('Tags', 'amoeba'); ?></a>
 		</ul>
 		<?php
 

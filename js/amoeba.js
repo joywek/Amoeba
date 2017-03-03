@@ -24,13 +24,14 @@ $jquery(function($) {
 		}
 	});
 
-	class Blog {
+	var Blog = {
 
-		constructor() {
-			this.sidebar = $('#sidebar');
-			this.container = $('#container');
+		create: function() {
 
-			var blog = this;
+			var blog = {};
+
+			blog.sidebar = $('#sidebar');
+			blog.container = $('#container');
 
 			$('#main').click(function() {
 				if ($(window).width() <= 800) {
@@ -40,26 +41,28 @@ $jquery(function($) {
 			$('#sidebar-toggle').click(function() {
 				blog.toggleSidebar();
 			});
-		}
 
-		openSidebar() {
-			this.sidebar.css('left', '0');
-			this.container.css('margin-left', '250px');
-		}
+			blog.openSidebar = function() {
+				blog.sidebar.css('left', '0');
+				blog.container.css('margin-left', '250px');
+			}
 
-		closeSidebar() {
-			$(document.body).addClass('sidebar-close');
-			this.sidebar.css('left', '-250px');
-			this.container.css('margin-left', '0');
-		}
-		
-		toggleSidebar() {
-			if (this.sidebar.position().left == 0) {
-				this.closeSidebar();
+			blog.closeSidebar = function() {
+				$(document.body).addClass('sidebar-close');
+				blog.sidebar.css('left', '-250px');
+				blog.container.css('margin-left', '0');
 			}
-			else {
-				this.openSidebar();
+			
+			blog.toggleSidebar = function() {
+				if (blog.sidebar.position().left == 0) {
+					blog.closeSidebar();
+				}
+				else {
+					blog.openSidebar();
+				}
 			}
+
+			return blog;
 		}
 
 	}
@@ -83,15 +86,19 @@ $jquery(function($) {
 					.addClass('current')
 					.siblings().removeClass('current');
 			}
+
+			return pager;
 		}
 	};
 
 	Pager.create();
-
-	let blog = new Blog();
+	var blog = Blog.create();
 	
 	function layout() {
-		blog.sidebar.css({'height': $(window).height() - blog.sidebar.position().top - 45 + 'px'});
+		var $socailBar = $('.widget_social');
+		var socailBarHeight = ($socailBar.length && $socailBar.is(':visible')) ? $socailBar.height() : 0;
+		var sidebarTop = blog.sidebar.length ? blog.sidebar.position().top : 0;
+		blog.sidebar.css({'height': $(window).height() - sidebarTop - socailBarHeight + 'px'});
 	}
 	layout();
 	$(window).resize(function() {

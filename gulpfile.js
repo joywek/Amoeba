@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var cleanCSS = require('gulp-clean-css');
-var uglify = require("gulp-uglify");
+var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var rsync = require('gulp-rsync');
 
@@ -30,6 +30,9 @@ gulp.task('minify-html', function() {
 	
 	gulp.src('inc/*.php')
 	.pipe(gulp.dest('dist/inc'));
+
+	gulp.src('widgets/*.php')
+	.pipe(gulp.dest('dist/widgets'));
 });
 
 gulp.task('minify-css', function () {

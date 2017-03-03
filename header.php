@@ -2,6 +2,7 @@
 
 <?php
 	global $script;
+	global $body_class;
 ?>
 
 <html <?php language_attributes(); ?>>
@@ -12,7 +13,7 @@
 		<?php echo $script; ?>
 	</head>
 
-	<body <?php body_class(); ?>>
+	<body <?php body_class($body_class); ?>>
 		<div id="container">
 			<header id="site-header">
 				<div class="inner">
