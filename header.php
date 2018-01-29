@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+	global $css_names;
 	global $script;
 	global $body_class;
 ?>
@@ -9,8 +10,10 @@
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-		<?php wp_head(); ?>
-		<?php echo $script; ?>
+		<?php
+			wp_head();
+			echo $script;
+		?>
 	</head>
 
 	<body <?php body_class($body_class); ?>>

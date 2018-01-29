@@ -23,5 +23,6 @@ function privacy_item() {
 		<a href="#" id="back-to-top" style="display:none"></a>
 		<?php wp_footer(); ?>
 		<?php include_once("analytics.php") ?>
+		<script src="<?php echo get_stylesheet_directory_uri() ?>/js/salvattore.min.js"></script>
 	</body>
 </html>

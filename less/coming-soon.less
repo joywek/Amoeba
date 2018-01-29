@@ -1,0 +1,159 @@
+@import "inc/variables.less";
+@import "inc/base.less";
+@import "inc/header.less";
+@import "inc/footer.less";
+@import "inc/form.less";
+
+body {
+	font-family: 'Oswald', Arial;
+	color: #fff;
+	background: url(http://7xnua6.com1.z0.glb.clouddn.com/2018/coming-soon-bg.jpg) top center no-repeat #000;
+}
+
+h1 {
+	text-align: center;
+	color: #fff;
+	letter-spacing: 0;
+	font-size:56px;
+	font-weight: 300;
+}
+
+h1 span {
+	font-size: 32px;
+}
+
+.yellow {
+	color: #ff9c00;
+	font-size: 56px;
+}
+
+p {
+	font-size: 16px;
+	line-height: 30px;
+	text-align: center;
+	font-weight: 100;
+}
+
+form {
+	margin:0 auto;
+	display:table;
+	margin-top:50px;
+}
+
+input[type="text"], input[type="email"] {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: rgba(255,255,255,.1);
+	background-clip: padding-box !important;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	height: 53px;
+	color: #fff;
+	font-family:'Oswald', Arial;
+	font-size: 16px;
+	padding-left: 20px;
+	width: 265px;
+}
+
+input[type="submit"] {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: #ff9c00;
+	color: #000;
+	border: none;
+	font-family:'Oswald', Arial;
+	font-size: 24px;
+	font-weight: 500;
+	padding: 0 30px;
+	position: relative;
+	top: 5px;
+	left: -9px;
+	height: 62px;
+	display: -webkit-inline-box;
+	-webkit-transition: all .3s ease;
+	-moz-transition: 	all .3s ease;
+	-ms-transition: 	all .3s ease;
+	-o-transition: 		all .3s ease;
+	transition: 		all .3s ease;
+}
+
+#site-footer {
+	display: none;
+}
+
+.countdown {
+	z-index:2;
+	margin:0 auto;
+	display:table;
+	position:relative;
+}
+
+.countdown-row {
+	margin:0 auto;
+	width:100%;
+	display:table;
+	text-align:center;
+}
+
+.countdown-section {
+	display: block;
+	float: left;
+	text-align: center;
+	width:120px;
+	height:120px;
+	border-radius:50%;
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border:solid 1px #fff;
+	text-align:center;
+	margin:40px 20px;
+}
+
+.countdown-amount {
+    font-size: 60px;
+	font-weight:700;
+	line-height:120px;
+}
+.countdown-period {
+    display: block;
+	line-height:60px;
+	color:#ff9c00;
+	font-size:18px;
+}
+
+@media (min-width: 561px) and (max-width: 720px) {
+	.countdown-section {
+		margin:5px;
+	}
+}
+
+@media (max-width: 600px){
+	.countdown-section {
+		display: block;
+		float: left;
+		text-align: center;
+		width:75px;
+		height:75px;
+		margin:6px;
+	}
+	.countdown-amount {
+		font-size: 32px;
+		font-weight:700;
+		line-height:74px;
+	}
+}
+
+@media (max-width: 420px){
+	.countdown-section {
+		display: block;
+		float: left;
+		text-align: center;
+		width:56px;
+		height:56px;
+		margin:2px;
+	}
+	.countdown-amount {
+		font-size: 24px;
+		font-weight:700;
+		line-height:58px;
+	}
+}

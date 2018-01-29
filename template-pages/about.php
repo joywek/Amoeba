@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-<?php $options = get_option('amoeba_option_about'); ?>
+<?php $options = get_option('amoeba_options_about'); ?>
 
 <div id="site-body">
 	<div class="sidebar">

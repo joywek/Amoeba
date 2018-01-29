@@ -7,9 +7,8 @@
 			<h1><?php the_title() ?></h1>
 		<?php endif ?>
 
-			<div class="entry-meta">
-				<div class="inner"><?php amoeba_entry_meta(); ?></div>
-			</div>
+		<?php get_template_part('template-parts/entry-meta'); ?>
+
 		</header>
 		<div class="entry-content">
 			<?php the_content(__('Read More', 'amoeba')); ?>

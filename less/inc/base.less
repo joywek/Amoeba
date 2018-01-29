@@ -10,7 +10,7 @@ html {
 }
 
 body {
-	font-family: "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+	font-family: "STXihei","Helvetica Neue","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
 	-webkit-font-smoothing: antialiased;
 	color: #30384C;
 	font-weight: 400;
@@ -20,8 +20,12 @@ body {
 	padding: 0;
 }
 
+#container {
+	position: relative;
+	top: unit(@header-height, px);
+}
+
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Helvetica neue", Helvetica, Arial, sans-serif;
 	margin: 20px 0 10px  0;
 	color: #243342;
 	-webkit-font-smoothing: antialiased;
@@ -30,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
 	font-size: 2.4em;
 	line-height: 1.2em;
-	letter-spacing: .05em;
+	/*letter-spacing: .05em;*/
 }
 
 h2 {

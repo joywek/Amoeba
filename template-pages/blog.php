@@ -34,4 +34,4 @@ get_header(); ?>
 	<?php get_template_part('no-results', 'archive'); ?>
 <?php endif; ?>
 
-get_footer();
+<?php get_footer(); ?>

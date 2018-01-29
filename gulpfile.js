@@ -3,6 +3,7 @@ var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var rsync = require('gulp-rsync');
+var del = require('del');
 
 gulp.task('copy-files', function() {
 	gulp.src(['LICENSE', 'README.md', 'screenshot.png', 'style.css'])
@@ -36,7 +37,7 @@ gulp.task('minify-html', function() {
 });
 
 gulp.task('minify-css', function () {
-	gulp.src(['less/blog.less', 'less/about.less'])
+	gulp.src('less/*.less')
 	.pipe(less())
 	.pipe(gulp.dest('css'))
 	.pipe(cleanCSS({compatibility: 'ie8'}))
@@ -44,11 +45,11 @@ gulp.task('minify-css', function () {
 });
 
 gulp.task('minify-js', function () {
-    gulp.src(['js/*.js', '!js/jquery.*'])
+    gulp.src(['js/*.js', '!js/jquery.*', '!js/salvattore.min.js'])
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'));
 
-	gulp.src('js/jquery.*')
+	gulp.src(['js/jquery.*', 'js/salvattore.min.js'])
 	.pipe(gulp.dest('dist/js'));
 });
 
@@ -68,6 +69,9 @@ gulp.task('deploy', function() {
 		}));
 });
 
+gulp.task('clean', function() {
+});
+
 gulp.task('watch', function() {
 	gulp.watch('less/**/*.less', function() {
 		gulp.src(['less/blog.less', 'less/page.less', 'less/about.less'])
@@ -75,4 +79,4 @@ gulp.task('watch', function() {
 		.pipe(gulp.dest('css'));
 	});
 });
-gulp.task('default', ['copy-files', 'minify-html', 'minify-css', 'minify-js']);
+gulp.task('default', ['clean', 'copy-files', 'minify-html', 'minify-css', 'minify-js']);

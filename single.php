@@ -9,6 +9,8 @@ $script = '<script type="text/javascript">(function($){window.onload=function(){
 
 get_header(); ?>
 
+<?php amoeba_set_post_views(); ?>
+
 <div id="site-body">
 	<div id="main">
 		<?php

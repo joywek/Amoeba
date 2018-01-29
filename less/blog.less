@@ -1,24 +1,18 @@
-@import "variables.less";
-@import "base.less";
-@import "header.less";
-@import "footer.less";
-@import "sidebar.less";
-@import "form.less";
-@import "article.less";
-@import "comment.less";
-@import "highlight.less";
-@import "page.less";
-@import "404.less";
-
-body {
-	background: #4d4d4d;
-}
+@import "inc/variables.less";
+@import "inc/base.less";
+@import "inc/header.less";
+@import "inc/footer.less";
+@import "inc/sidebar.less";
+@import "inc/form.less";
+@import "inc/article.less";
+@import "inc/comment.less";
+@import "inc/highlight.less";
+@import "inc/page.less";
+@import "inc/404.less";
+@import "inc/archive.less";
 
 #container {
-	background: #fff;
-	position: relative;
 	margin-left: unit(@sidebar-width, px);
-	top: unit(@header-height, px);
 }
 
 .nosidebar #site-header {

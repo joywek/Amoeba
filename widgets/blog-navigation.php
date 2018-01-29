@@ -56,9 +56,15 @@ class AMBBlogNavigationWidget extends WP_Widget {
 
 		?>
 		<ul>
-			<li class="nav-item-arc<?php echo $request_uri == '/archives/' ? ' current' : '' ?>"><a href="<?php echo get_home_url(), '/archives/' ?>"><?php _e('Archives', 'amoeba'); ?></a>
-			<li class="nav-item-cat<?php echo $request_uri == '/categories/' ? ' current' : '' ?>"><a href="<?php echo get_home_url(), '/categories/' ?>"><?php _e('Categories', 'amoeba'); ?></a>
-			<li class="nav-item-tag<?php echo $request_uri == '/tags/' ? ' current' : '' ?>"><a href="<?php echo get_home_url(), '/tags/' ?>"><?php _e('Tags', 'amoeba'); ?></a>
+			<li class="nav-item-arc<?php echo is_page('archives') ? ' current' : '' ?>">
+				<a href="<?php echo get_permalink(get_page_by_path('archives')) ?>"><?php _e('Archives', 'amoeba'); ?></a>
+			</li>
+			<li class="nav-item-cat<?php echo is_page('categories') ? ' current' : '' ?>">
+				<a href="<?php echo get_permalink(get_page_by_path('categories')) ?>"><?php _e('Categories', 'amoeba'); ?></a>
+			</li>
+			<li class="nav-item-tag<?php echo is_page('tags') ? ' current' : '' ?>">
+				<a href="<?php echo get_permalink(get_page_by_path('tags')) ?>"><?php _e('Tags', 'amoeba'); ?></a>
+			</li>
 		</ul>
 		<?php
 

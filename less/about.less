@@ -1,4 +1,4 @@
-@import "variables.less";
+@import "inc/variables.less";
 
 @sidebar-width: 250px;
 @sidebar-bgcolor: #2b2b2b;
@@ -13,10 +13,11 @@
 @main-subtitle-color: #d7ac39;
 @main-line-color: #ccc;
 
-@import "base.less";
-@import "header.less";
+@import "inc/base.less";
+@import "inc/header.less";
 
-#site-header {
+#container {
+	height: 100%;
 }
 
 #site-footer {
@@ -32,6 +33,11 @@
 	flex-flow: row wrap;
 }
 
+.sidebar {
+	position: fixed;
+	height: 100%;
+}
+
 .sidebar .widget-area {
 	width: @sidebar-width;
 	background: @sidebar-bgcolor;
@@ -39,10 +45,7 @@
 	padding: 30px 0;
 	font-size: @sidebar-font-size;
 	border-right: 1px solid #cacaca;
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 45px;
+	height: e("calc(100% - 45px)");
 	overflow: scroll;
 }
 
@@ -312,7 +315,7 @@
 	left: e("calc(50% - 1px)");
 	width: 2px;
 	height: e("calc(100% - 80px)");
-	background: rgba(0, 214, 70, 1);
+	background: #f0f0f0;
 }
 
 .experience-item {
@@ -323,10 +326,10 @@
 
 .experience-item .dot {
 	position: absolute;
-	width: 14px;
-	height: 14px;
-	left: e("calc(50% - 7px)");
-	background: rgba(0, 214, 70, 1);
+	width: 6px;
+	height: 6px;
+	left: e("calc(50% - 3px)");
+	background: #000;
 	border-radius: 50%;
 	margin-top: 4px;
 }
