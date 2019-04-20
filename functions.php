@@ -137,10 +137,13 @@ add_action('after_setup_theme', 'amoeba_setup');
  */
 function amoeba_scripts() {
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/fonts/font-awesome/4.7.0/css/font-awesome.min.css');
+	wp_enqueue_style('font-oswald', 'https://fonts.proxy.ustclug.org/css?family=Oswald');
 
 	wp_deregister_script('jquery');
 	wp_register_script('jquery', get_template_directory_uri() . '/js/jquery.min.js', false, null, true);
 	wp_enqueue_script('jquery');
+
+	wp_enqueue_style('amoeba-base-style', get_template_directory_uri() . "/css/base.css");
 
 	if (is_page('coming-soon')) {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . "/css/coming-soon.css");
@@ -150,12 +153,12 @@ function amoeba_scripts() {
 	}
 	else if (is_page('gallery')) {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . "/css/gallery.css");
-		wp_enqueue_script('magnific-popup', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array('jquery'), '');  
 	}
 	else {
 		wp_enqueue_style('amoeba-style', get_template_directory_uri() . "/css/blog.css");
 	}
 
+	wp_enqueue_script('magnific-popup', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array('jquery'), '');  
 	wp_enqueue_script('amoeba-js', get_template_directory_uri() . '/js/amoeba.js', array('jquery'), '');  
 }
 add_action('wp_enqueue_scripts', 'amoeba_scripts');
@@ -174,6 +177,25 @@ function amoeba_fonts_url() {
 	return 'http://fonts.proxy.ustclug.org/css?family=Oswald:400,300,700';
 }
 endif;
+
+if (!function_exists('am_create_post_type')) :
+function am_create_post_type() {
+    register_post_type( 'vivi',
+		array(
+			'labels' => array(
+				'name'          => __( 'Vivi' ),
+				'singular_name' => __( 'Vivi' ),
+				'all_items'     => __('All Posts')
+			),
+			'public'      => true,
+			'has_archive' => true,
+			'rewrite'     => array('slug' => 'vivi'),
+			'supports'    => array( 'title', 'editor', 'author', 'comments' )
+		)
+    );
+}
+endif;
+add_action('init', 'am_create_post_type', 0);
 
 /**
  * Register widget area.
@@ -234,12 +256,49 @@ add_filter('body_class', function($c) {
 	return $c;
 });
 
-add_action('template_redirect', function() {
-//	if ($_SERVER['REQUEST_URI'] == '/tags/') {
-//		amoeba_load_template(TEMPLATEPATH . '/tags.php');
-//		exit;
-//	}
-});
+if (!function_exists('am_get_template_shared_vars')) :
+function am_get_template_shared_vars() {
+}
+endif;
+add_action('template_redirect', 'am_get_template_shared_vars');
+
+if (!function_exists('am_nav_menu_items')) :
+function am_nav_menu_items($items) {
+	if (!is_user_logged_in()) {
+		$items .= '<li id="menu-item-login" class="menu-item menu-item-login"><a href="' . wp_login_url('index.php') . '">Login</a></li>';
+	}
+	else {
+		$user = wp_get_current_user();
+		$items .= '<li class="menu-item menu-item-profile"><a href ="' . admin_url() . '"><img src="' . get_avatar_url($user->ID) . '" />' . $user->display_name . '</a></li>';
+	}
+	return $items;
+}
+endif;
+add_filter('wp_nav_menu_items', 'am_nav_menu_items', 10, 2);
+
+// Disable admin bar for all users except for administrators.
+if (!function_exists('am_admin_bar')) :
+function am_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+		show_admin_bar(false);
+	}
+}
+endif;
+add_action('after_setup_theme', 'am_admin_bar');
+
+add_filter( 'wp_nav_menu_objects', function(array $items, $args) {
+	console_log($args->theme_location);
+	if ('primary' !== $args->theme_location) {
+		return $items;
+	}
+
+	return array_filter($items, function($item) {
+		if ('相册' === $item->title) {
+			return is_user_logged_in();
+		}
+		return true;
+	});
+}, 10, 2 );
 
 function amoeba_get_option($options, $section, $name, $default_value = '') {
 	if (!empty($options)) {

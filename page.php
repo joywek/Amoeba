@@ -10,8 +10,6 @@
  * @package Amoeba
  */
 
-$body_class = "nosidebar";
-
 get_header(); ?>
 
 <div id="site-body">

@@ -46,7 +46,7 @@ gulp.task('minify-css', function () {
 
 gulp.task('minify-js', function () {
     gulp.src(['js/*.js', '!js/jquery.*', '!js/salvattore.min.js'])
-    .pipe(uglify())
+//    .pipe(uglify())
     .pipe(gulp.dest('dist/js'));
 
 	gulp.src(['js/jquery.*', 'js/salvattore.min.js'])
